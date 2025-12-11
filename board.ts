@@ -36,7 +36,7 @@ export class Board {
     }
   }
 
-  public makeMove(player: Player, col: number): number {
+  public makeMove(player: Player, col: number): number { // maybe
     for (let r = this.fields.length - 1; r >= 0; r--) {
       if (this.fields[r][col] == Player.Nobody) {
         this.fields[r][col] = player;
