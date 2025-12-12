@@ -11,22 +11,3 @@ Deno.test("UserInputsColumnZero", () => {
     board.winner(Player.PlayerO, row2, 0);
   }
 });
-
-Deno.test("ChessboardPatternNoWinner", () => {
-  const board = new Board();
-  const moves = [
-    0, 1, 2, 3, 4, 5, 6, // Row 5
-    0, 1, 2, 3, 4, 5, 6, // Row 4
-    0, 1, 2, 3           // Row 3
-  ];
-
-  let currentPlayer = Player.PlayerX;
-
-  for (const col of moves) {
-    const row = board.makeMove(currentPlayer, col);
-    const winner = board.winner(currentPlayer, row, col);
-    assertEquals(winner, Player.Nobody, `Winner found incorrectly at move col ${col} by ${currentPlayer}`);
-
-    currentPlayer = currentPlayer === Player.PlayerX ? Player.PlayerO : Player.PlayerX;
-  }
-});

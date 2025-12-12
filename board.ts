@@ -36,7 +36,7 @@ export class Board {
     }
   }
 
-  public makeMove(player: Player, col: number): number { // maybe
+  public makeMove(player: Player, col: number): number {
     for (let r = this.fields.length - 1; r >= 0; r--) {
       if (this.fields[r][col] == Player.Nobody) {
         this.fields[r][col] = player;
@@ -47,18 +47,19 @@ export class Board {
   }
 
   public winner(player: Player, row: number, col: number): Player {
+    if (row < 0 || col < 0 || col >= COLS) {
+      return Player.Nobody;
+    }
+
     const horizontal = this.horizontalWinner(player, row);
-    if (horizontal != Player.Nobody) {
-      return horizontal;
-    }
+    if (horizontal != Player.Nobody) return horizontal;
+
     const vertical = this.verticalWinner(player, col);
-    if (vertical != Player.Nobody) {
-      return vertical;
-    }
+    if (vertical != Player.Nobody) return vertical;
+
     const diagonal = this.diagonalWinner(player, row, col);
-    if (diagonal != Player.Nobody) {
-      return diagonal;
-    }
+    if (diagonal != Player.Nobody) return diagonal;
+
     return Player.Nobody;
   }
 
